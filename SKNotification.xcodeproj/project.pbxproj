@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A47753F919640273002CEB67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47753F819640273002CEB67 /* Foundation.framework */; };
+		A47753FB19640273002CEB67 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47753FA19640273002CEB67 /* CoreGraphics.framework */; };
+		A47753FD19640273002CEB67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47753FC19640273002CEB67 /* UIKit.framework */; };
+		A477540319640274002CEB67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A477540119640274002CEB67 /* InfoPlist.strings */; };
+		A477540519640274002CEB67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A477540419640274002CEB67 /* main.m */; };
+		A477540919640274002CEB67 /* SKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A477540819640274002CEB67 /* SKAppDelegate.m */; };
+		A477540C19640274002CEB67 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A477540A19640274002CEB67 /* Main_iPhone.storyboard */; };
+		A477540F19640274002CEB67 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A477540D19640274002CEB67 /* Main_iPad.storyboard */; };
+		A477541219640274002CEB67 /* SKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A477541119640274002CEB67 /* SKViewController.m */; };
+		A477541419640274002CEB67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A477541319640274002CEB67 /* Images.xcassets */; };
+		A477541B19640274002CEB67 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A477541A19640274002CEB67 /* XCTest.framework */; };
+		A477541C19640274002CEB67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47753F819640273002CEB67 /* Foundation.framework */; };
+		A477541D19640274002CEB67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47753FC19640273002CEB67 /* UIKit.framework */; };
+		A477542519640274002CEB67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A477542319640274002CEB67 /* InfoPlist.strings */; };
+		A477542719640274002CEB67 /* SKNotificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A477542619640274002CEB67 /* SKNotificationTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A477541E19640274002CEB67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A47753ED19640273002CEB67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A47753F419640273002CEB67;
+			remoteInfo = SKNotification;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A47753F519640273002CEB67 /* SKNotification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKNotification.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A47753F819640273002CEB67 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A47753FA19640273002CEB67 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A47753FC19640273002CEB67 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A477540019640274002CEB67 /* SKNotification-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SKNotification-Info.plist"; sourceTree = "<group>"; };
+		A477540219640274002CEB67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A477540419640274002CEB67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A477540619640274002CEB67 /* SKNotification-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SKNotification-Prefix.pch"; sourceTree = "<group>"; };
+		A477540719640274002CEB67 /* SKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKAppDelegate.h; sourceTree = "<group>"; };
+		A477540819640274002CEB67 /* SKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKAppDelegate.m; sourceTree = "<group>"; };
+		A477540B19640274002CEB67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		A477540E19640274002CEB67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		A477541019640274002CEB67 /* SKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKViewController.h; sourceTree = "<group>"; };
+		A477541119640274002CEB67 /* SKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKViewController.m; sourceTree = "<group>"; };
+		A477541319640274002CEB67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A477541919640274002CEB67 /* SKNotificationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKNotificationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A477541A19640274002CEB67 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A477542219640274002CEB67 /* SKNotificationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SKNotificationTests-Info.plist"; sourceTree = "<group>"; };
+		A477542419640274002CEB67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A477542619640274002CEB67 /* SKNotificationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKNotificationTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A47753F219640273002CEB67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A47753FB19640273002CEB67 /* CoreGraphics.framework in Frameworks */,
+				A47753FD19640273002CEB67 /* UIKit.framework in Frameworks */,
+				A47753F919640273002CEB67 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A477541619640274002CEB67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A477541B19640274002CEB67 /* XCTest.framework in Frameworks */,
+				A477541D19640274002CEB67 /* UIKit.framework in Frameworks */,
+				A477541C19640274002CEB67 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A47753EC19640273002CEB67 = {
+			isa = PBXGroup;
+			children = (
+				A47753FE19640274002CEB67 /* SKNotification */,
+				A477542019640274002CEB67 /* SKNotificationTests */,
+				A47753F719640273002CEB67 /* Frameworks */,
+				A47753F619640273002CEB67 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A47753F619640273002CEB67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A47753F519640273002CEB67 /* SKNotification.app */,
+				A477541919640274002CEB67 /* SKNotificationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A47753F719640273002CEB67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A47753F819640273002CEB67 /* Foundation.framework */,
+				A47753FA19640273002CEB67 /* CoreGraphics.framework */,
+				A47753FC19640273002CEB67 /* UIKit.framework */,
+				A477541A19640274002CEB67 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A47753FE19640274002CEB67 /* SKNotification */ = {
+			isa = PBXGroup;
+			children = (
+				A477540719640274002CEB67 /* SKAppDelegate.h */,
+				A477540819640274002CEB67 /* SKAppDelegate.m */,
+				A477540A19640274002CEB67 /* Main_iPhone.storyboard */,
+				A477540D19640274002CEB67 /* Main_iPad.storyboard */,
+				A477541019640274002CEB67 /* SKViewController.h */,
+				A477541119640274002CEB67 /* SKViewController.m */,
+				A477541319640274002CEB67 /* Images.xcassets */,
+				A47753FF19640274002CEB67 /* Supporting Files */,
+			);
+			path = SKNotification;
+			sourceTree = "<group>";
+		};
+		A47753FF19640274002CEB67 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A477540019640274002CEB67 /* SKNotification-Info.plist */,
+				A477540119640274002CEB67 /* InfoPlist.strings */,
+				A477540419640274002CEB67 /* main.m */,
+				A477540619640274002CEB67 /* SKNotification-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A477542019640274002CEB67 /* SKNotificationTests */ = {
+			isa = PBXGroup;
+			children = (
+				A477542619640274002CEB67 /* SKNotificationTests.m */,
+				A477542119640274002CEB67 /* Supporting Files */,
+			);
+			path = SKNotificationTests;
+			sourceTree = "<group>";
+		};
+		A477542119640274002CEB67 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A477542219640274002CEB67 /* SKNotificationTests-Info.plist */,
+				A477542319640274002CEB67 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A47753F419640273002CEB67 /* SKNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A477542A19640274002CEB67 /* Build configuration list for PBXNativeTarget "SKNotification" */;
+			buildPhases = (
+				A47753F119640273002CEB67 /* Sources */,
+				A47753F219640273002CEB67 /* Frameworks */,
+				A47753F319640273002CEB67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SKNotification;
+			productName = SKNotification;
+			productReference = A47753F519640273002CEB67 /* SKNotification.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A477541819640274002CEB67 /* SKNotificationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A477542D19640274002CEB67 /* Build configuration list for PBXNativeTarget "SKNotificationTests" */;
+			buildPhases = (
+				A477541519640274002CEB67 /* Sources */,
+				A477541619640274002CEB67 /* Frameworks */,
+				A477541719640274002CEB67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A477541F19640274002CEB67 /* PBXTargetDependency */,
+			);
+			name = SKNotificationTests;
+			productName = SKNotificationTests;
+			productReference = A477541919640274002CEB67 /* SKNotificationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A47753ED19640273002CEB67 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SK;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Sandor Kolotenko";
+				TargetAttributes = {
+					A477541819640274002CEB67 = {
+						TestTargetID = A47753F419640273002CEB67;
+					};
+				};
+			};
+			buildConfigurationList = A47753F019640273002CEB67 /* Build configuration list for PBXProject "SKNotification" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A47753EC19640273002CEB67;
+			productRefGroup = A47753F619640273002CEB67 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A47753F419640273002CEB67 /* SKNotification */,
+				A477541819640274002CEB67 /* SKNotificationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A47753F319640273002CEB67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A477540F19640274002CEB67 /* Main_iPad.storyboard in Resources */,
+				A477541419640274002CEB67 /* Images.xcassets in Resources */,
+				A477540C19640274002CEB67 /* Main_iPhone.storyboard in Resources */,
+				A477540319640274002CEB67 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A477541719640274002CEB67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A477542519640274002CEB67 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A47753F119640273002CEB67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A477540919640274002CEB67 /* SKAppDelegate.m in Sources */,
+				A477541219640274002CEB67 /* SKViewController.m in Sources */,
+				A477540519640274002CEB67 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A477541519640274002CEB67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A477542719640274002CEB67 /* SKNotificationTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A477541F19640274002CEB67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A47753F419640273002CEB67 /* SKNotification */;
+			targetProxy = A477541E19640274002CEB67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A477540119640274002CEB67 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A477540219640274002CEB67 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A477540A19640274002CEB67 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A477540B19640274002CEB67 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		A477540D19640274002CEB67 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A477540E19640274002CEB67 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		A477542319640274002CEB67 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A477542419640274002CEB67 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A477542819640274002CEB67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A477542919640274002CEB67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A477542B19640274002CEB67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SKNotification/SKNotification-Prefix.pch";
+				INFOPLIST_FILE = "SKNotification/SKNotification-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A477542C19640274002CEB67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SKNotification/SKNotification-Prefix.pch";
+				INFOPLIST_FILE = "SKNotification/SKNotification-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A477542E19640274002CEB67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SKNotification.app/SKNotification";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SKNotification/SKNotification-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SKNotificationTests/SKNotificationTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A477542F19640274002CEB67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SKNotification.app/SKNotification";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SKNotification/SKNotification-Prefix.pch";
+				INFOPLIST_FILE = "SKNotificationTests/SKNotificationTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A47753F019640273002CEB67 /* Build configuration list for PBXProject "SKNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A477542819640274002CEB67 /* Debug */,
+				A477542919640274002CEB67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A477542A19640274002CEB67 /* Build configuration list for PBXNativeTarget "SKNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A477542B19640274002CEB67 /* Debug */,
+				A477542C19640274002CEB67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A477542D19640274002CEB67 /* Build configuration list for PBXNativeTarget "SKNotificationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A477542E19640274002CEB67 /* Debug */,
+				A477542F19640274002CEB67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A47753ED19640273002CEB67 /* Project object */;
+}
