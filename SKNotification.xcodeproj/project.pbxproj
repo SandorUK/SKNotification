@@ -22,6 +22,8 @@
 		A477541D19640274002CEB67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47753FC19640273002CEB67 /* UIKit.framework */; };
 		A477542519640274002CEB67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A477542319640274002CEB67 /* InfoPlist.strings */; };
 		A477542719640274002CEB67 /* SKNotificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A477542619640274002CEB67 /* SKNotificationTests.m */; };
+		A477543619640510002CEB67 /* SKNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = A477543519640510002CEB67 /* SKNotification.m */; };
+		A477544D19644630002CEB67 /* SKNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A477544C19644630002CEB67 /* SKNotificationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		A477542219640274002CEB67 /* SKNotificationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SKNotificationTests-Info.plist"; sourceTree = "<group>"; };
 		A477542419640274002CEB67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A477542619640274002CEB67 /* SKNotificationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKNotificationTests.m; sourceTree = "<group>"; };
+		A477543419640510002CEB67 /* SKNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNotification.h; sourceTree = "<group>"; };
+		A477543519640510002CEB67 /* SKNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNotification.m; sourceTree = "<group>"; };
+		A477544B19644630002CEB67 /* SKNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNotificationView.h; sourceTree = "<group>"; };
+		A477544C19644630002CEB67 /* SKNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNotificationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 		A47753FE19640274002CEB67 /* SKNotification */ = {
 			isa = PBXGroup;
 			children = (
+				A477543019640299002CEB67 /* Classes */,
 				A477540719640274002CEB67 /* SKAppDelegate.h */,
 				A477540819640274002CEB67 /* SKAppDelegate.m */,
 				A477540A19640274002CEB67 /* Main_iPhone.storyboard */,
@@ -153,6 +160,17 @@
 				A477542319640274002CEB67 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A477543019640299002CEB67 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A477543419640510002CEB67 /* SKNotification.h */,
+				A477543519640510002CEB67 /* SKNotification.m */,
+				A477544B19644630002CEB67 /* SKNotificationView.h */,
+				A477544C19644630002CEB67 /* SKNotificationView.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A477543619640510002CEB67 /* SKNotification.m in Sources */,
 				A477540919640274002CEB67 /* SKAppDelegate.m in Sources */,
 				A477541219640274002CEB67 /* SKViewController.m in Sources */,
+				A477544D19644630002CEB67 /* SKNotificationView.m in Sources */,
 				A477540519640274002CEB67 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -393,8 +413,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SKNotification/SKNotification-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/Classes",
+				);
 				INFOPLIST_FILE = "SKNotification/SKNotification-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Classes";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -406,8 +432,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SKNotification/SKNotification-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/Classes",
+				);
 				INFOPLIST_FILE = "SKNotification/SKNotification-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Classes";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -471,6 +503,7 @@
 				A477542C19640274002CEB67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A477542D19640274002CEB67 /* Build configuration list for PBXNativeTarget "SKNotificationTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +512,7 @@
 				A477542F19640274002CEB67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
