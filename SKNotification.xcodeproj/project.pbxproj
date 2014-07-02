@@ -61,6 +61,9 @@
 		A477543519640510002CEB67 /* SKNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNotification.m; sourceTree = "<group>"; };
 		A477544B19644630002CEB67 /* SKNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKNotificationView.h; sourceTree = "<group>"; };
 		A477544C19644630002CEB67 /* SKNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKNotificationView.m; sourceTree = "<group>"; };
+		A477544E1964D09A002CEB67 /* screen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen1.png; sourceTree = "<group>"; };
+		A477544F1964D09A002CEB67 /* screen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen3.png; sourceTree = "<group>"; };
+		A47754501964D09A002CEB67 /* screen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,9 @@
 		A47753EC19640273002CEB67 = {
 			isa = PBXGroup;
 			children = (
+				A477544E1964D09A002CEB67 /* screen1.png */,
+				A477544F1964D09A002CEB67 /* screen3.png */,
+				A47754501964D09A002CEB67 /* screen2.png */,
 				A47753FE19640274002CEB67 /* SKNotification */,
 				A477542019640274002CEB67 /* SKNotificationTests */,
 				A47753F719640273002CEB67 /* Frameworks */,
