@@ -60,6 +60,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 @property (assign) double alpha;
 @property (assign, getter = isTransparent, setter = setTransparent:) BOOL transparent;
 @property (assign, getter = isElastic, setter = setElastic:) BOOL elastic;
+@property (assign, getter = includesStatusBar, setter = shouldIncludeStatusBar:) BOOL includeStatusBar;
 @property (assign, getter = hasCustomFont, setter = setUseCustomFont:) BOOL customFont;
 @property (assign, setter = setUseAutomaticTextColor:) BOOL automaticColor;
 @property (assign, getter = dropsShadow, setter = shouldDropShadow:) BOOL shadow;

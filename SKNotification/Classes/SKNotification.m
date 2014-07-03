@@ -29,9 +29,9 @@
         // Set default colours
         // http://www.colourlovers.com/palette/3392791/Notifications
         /*[self setColorAlert:UIColorFromRGB(0xFFBB00)];
-        [self setColorFailure:UIColorFromRGB(0xCC0000)];
-        [self setColorInfo:UIColorFromRGB(0x074CBC)];
-        [self setColorSuccess:UIColorFromRGB(0x77B300)];*/
+         [self setColorFailure:UIColorFromRGB(0xCC0000)];
+         [self setColorInfo:UIColorFromRGB(0x074CBC)];
+         [self setColorSuccess:UIColorFromRGB(0x77B300)];*/
         
         // http://ios7colors.com/
         [self setColorAlert:UIColorFromRGB(0xFFCD02)];
@@ -39,6 +39,7 @@
         [self setColorInfo:UIColorFromRGB(0x5856D6)];
         [self setColorSuccess:UIColorFromRGB(0x0BD318)];
         
+        [self shouldIncludeStatusBar:YES];
         [self setTransparent:NO];
         [self setAlpha:1.0f];
         [self setDisplayDuration:2.5f];
@@ -199,7 +200,12 @@
     if (self.isElastic) {
         CGRect frame = [self frameForLabel:notificationView.notificationLabel];
         
-        if (frame.size.height < controller.view.frame.size.height / 2) {
+        if (frame.size.height <= controller.view.frame.size.height / 2) {
+            
+            // Setup the minimum size of the label
+            if (frame.size.height <= bannerImageSide) {
+                frame.size.height = bannerImageSide;
+            }
             
             // Adjust label
             CGRect notificationLabelFrame = CGRectMake(labelOffsetX,
@@ -214,14 +220,16 @@
             
             CGRect frame = CGRectMake(0, - bannerHeight, controller.view.frame.size.width, bannerHeight);
             [notificationView setFrame:frame];
+            
         }
     }
     
     float statusHeight = 0.0f;
-    if (![UIApplication sharedApplication].statusBarHidden &&
-        ![controller isKindOfClass:[UINavigationController class]] &&
-        (_latestOffsetY == 0)) {
-        
+    BOOL includeStatusBar = ![UIApplication sharedApplication].statusBarHidden &&
+                    ![controller isKindOfClass:[UINavigationController class]] &&
+                    (_latestOffsetY == 0) && self.includeStatusBar;
+    
+    if (includeStatusBar) {
         // Get the statusbar height
         statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
         bannerHeight += statusHeight;
@@ -238,7 +246,7 @@
     
     // Adjust position of an icon
     CGRect iconFrame = notificationView.iconView.frame;
-    iconFrame.origin.y = bannerHeight / 2.0f - bannerImageSide / 2.0f;
+    iconFrame.origin.y = bannerHeight / 2.0f - bannerImageSide / 2.0f + (includeStatusBar ? statusHeight / 2.0f : 0.0f);
     [notificationView.iconView setFrame:iconFrame];
     
     [notificationView addSubview:notificationView.notificationLabel];
@@ -253,7 +261,6 @@
     if ([self dropsShadow]) {
         [notificationView dropShadow];
     }
-    
     
     @synchronized(notificationView){
         [notificationView setOrderNumber:_counter];
@@ -295,7 +302,7 @@
         CGRect frame = notificationView.frame;
         frame.origin.y = _latestOffsetY;
         [notificationView setFrame:frame];
-    
+        
     } completion:^(BOOL finished) {
         [self slideUp:notificationView immediately:NO];
     }];
@@ -312,7 +319,7 @@
     if (self.duration > duration) {
         duration = self.duration - 0.5f;
     }
-
+    
     if(notificationView.duration > 0){
         duration = notificationView.duration;
     }
@@ -332,7 +339,7 @@
         [notificationView removeFromSuperview];
         notificationView.completion();
     }];
-
+    
     
     _latestOffsetY = notificationView.frame.origin.y - notificationView.frame.size.height;
     if (_latestOffsetY < 0) {
