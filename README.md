@@ -1,4 +1,4 @@
-KNotification
+SKNotification
 ==============
 
 for CocoaPods
