@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SKNotification"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.summary      = "Nice and easy unobtrusive notifications."
 
   s.description  = <<-DESC
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   	s.social_media_url   = "http://twitter.com/iSandor"
   	
   	s.platform     = :ios
-	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.0" }
+	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.1" }
 	
   	s.source_files  = "SKNotification/Classes", "SKNotification/Classes/**/*.{h,m}"
   	
