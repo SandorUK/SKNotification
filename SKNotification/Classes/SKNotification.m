@@ -320,7 +320,7 @@
         duration = self.duration - 0.5f;
     }
     
-    if(notificationView.duration > 0){
+    if(notificationView.duration > duration){
         duration = notificationView.duration;
     }
     
@@ -337,7 +337,7 @@
     } completion:^(BOOL finished) {
         // Call completion block
         [notificationView removeFromSuperview];
-        notificationView.completion();
+        notificationView.completion;
     }];
     
     
