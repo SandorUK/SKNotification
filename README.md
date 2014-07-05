@@ -15,6 +15,8 @@ Customisation:
 * Translucent notifications supported
 * Multiple notifications on one screen
 
+![alt text](http://files.softicons.com/download/toolbar-icons/mono-general-icons-by-custom-icon-design/png/64x64/alert.png "Alert")
+*Still under development, watchout for minor bugs. Please report to issues if found*
 
 Usage:
 
