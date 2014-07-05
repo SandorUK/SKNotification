@@ -8,6 +8,7 @@
 
 #import "SKNotification.h"
 #import "SKNotificationView.h"
+#import "UIImageOverlay.h"
 
 @implementation SKNotification
 
@@ -194,6 +195,7 @@
     [notificationView.notificationLabel setNumberOfLines:0];
     [notificationView.notificationLabel setFont:self.messageFont];
     [notificationView.notificationLabel setTextAlignment:NSTextAlignmentLeft];
+    [notificationView.notificationLabel setLineBreakMode:NSLineBreakByCharWrapping];
     [notificationView.notificationLabel setText:message];
     
     // Adjust size if elastic

@@ -64,6 +64,7 @@
 		A477544E1964D09A002CEB67 /* screen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen1.png; sourceTree = "<group>"; };
 		A477544F1964D09A002CEB67 /* screen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen3.png; sourceTree = "<group>"; };
 		A47754501964D09A002CEB67 /* screen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen2.png; sourceTree = "<group>"; };
+		A4A9EE2C1968910400909481 /* UIImageOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageOverlay.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +176,7 @@
 				A477543519640510002CEB67 /* SKNotification.m */,
 				A477544B19644630002CEB67 /* SKNotificationView.h */,
 				A477544C19644630002CEB67 /* SKNotificationView.m */,
+				A4A9EE2C1968910400909481 /* UIImageOverlay.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

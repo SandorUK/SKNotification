@@ -24,7 +24,7 @@
 
 - (IBAction)showNotification:(id)sender{
     
-    [[SKNotification centre] setImageWithName:@"alert" forType:SKNAlert];
+    [[SKNotification centre] setImageWithName:@"alert2" forType:SKNAlert];
     [[SKNotification centre] setImageWithName:@"success" forType:SKNSuccess];
     [[SKNotification centre] setImageWithName:@"failure" forType:SKNFailure];
     [[SKNotification centre] setImageWithName:@"info" forType:SKNInfo];
