@@ -54,6 +54,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 @property (strong, nonatomic) UIColor *colorCustom;
 @property (strong, nonatomic) UIColor *colorForeground;
+@property (strong, nonatomic) UIColor *colorIconTint;
 
 @property (strong, nonatomic) UIFont  *messageFont;
 
@@ -63,6 +64,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 @property (assign, getter = includesStatusBar, setter = shouldIncludeStatusBar:) BOOL includeStatusBar;
 @property (assign, getter = hasCustomFont, setter = setUseCustomFont:) BOOL customFont;
 @property (assign, setter = setUseAutomaticTextColor:) BOOL automaticColor;
+@property (assign, setter = setColorizeIcon:) BOOL colorizeIcon;
 @property (assign, getter = dropsShadow, setter = shouldDropShadow:) BOOL shadow;
 @property (assign, setter = setDisplayDuration:) float duration;
 

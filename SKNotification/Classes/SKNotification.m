@@ -86,6 +86,10 @@
     
     UIImage *loadedImage = [UIImage imageNamed:imageName];
     
+    if (self.colorizeIcon) {
+        loadedImage = [loadedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
+    
     if (loadedImage) {
         
         switch (type) {
@@ -176,6 +180,10 @@
     
     if (self.hasCustomFont) {
         [notificationView.notificationLabel setFont:self.messageFont];
+    }
+    
+    if (self.colorizeIcon) {
+        [notificationView.iconView setTintColor:self.colorIconTint];
     }
     
     if (self.automaticColor) {

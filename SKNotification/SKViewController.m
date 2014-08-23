@@ -30,6 +30,7 @@
     [[SKNotification centre] setImageWithName:@"info" forType:SKNInfo];
     [[SKNotification centre] setDisplayDuration:1.85f];
     [[SKNotification centre] shouldDropShadow:YES];
+    
     [[SKNotification centre] setMessageFont:[UIFont fontWithName:@"Helvetica-Bold" size:10.0f]];
     
     [[SKNotification centre] show:SKNAlert
