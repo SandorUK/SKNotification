@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SKNotification"
-  s.version      = "1.2"
+  s.version      = "1.3"
   s.summary      = "Nice and easy unobtrusive notifications."
 
   s.description  = <<-DESC
@@ -9,6 +9,7 @@ Pod::Spec.new do |s|
 					Customisation:
                    * Autoresizing for large text
                    * Colours and icons for various statuses (e.g. Alert, Failure)
+		   * Tint icons 
                    * Notification without icon
                    * Custom fonts supported
                    * Translucent notifications supported
@@ -22,7 +23,7 @@ Pod::Spec.new do |s|
   	s.social_media_url   = "http://twitter.com/iSandor"
   	
   	s.platform     = :ios
-	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.2" }
+	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.3" }
 	
   	s.source_files  = "SKNotification/Classes", "SKNotification/Classes/**/*.{h,m}"
   	
