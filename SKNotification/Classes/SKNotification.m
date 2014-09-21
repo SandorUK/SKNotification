@@ -47,6 +47,9 @@
         [self setMessageFont:[UIFont systemFontOfSize:13.0f]];
         [self setUseAutomaticTextColor:YES];
         [self setElastic:YES];
+        
+        [self shouldCancelOnTap:NO];
+        [self shouldDismissOnTap:NO];
     }
     return self;
 }
@@ -114,12 +117,33 @@
     }
 }
 
-- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion{
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller{
+    
     NSString *message = NSLocalizedString(key, key);
-    [self show:type withMessage:message in:controller withCompletion:completion];
+    [self show:type withMessage:message in:controller];
+}
+
+- (void)show:(SKNotificationType)type withMessage:(NSString *)message in:(UIViewController *)controller{
+    [self show:type withMessage:message in:controller withCompletion:nil];
+}
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion{
+    
+    [self show:type withLocalizedKey:key in:controller withCompletion:completion andCancelation:nil];
+}
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation{
+    
+    NSString *message = NSLocalizedString(key, key);
+    [self show:type withMessage:message in:controller withCompletion:completion andCancelation:cancelation];
 }
 
 - (void)show:(SKNotificationType)type withMessage:(NSString *)message in:(UIViewController *)controller withCompletion:(void (^)(void))completion{
+    
+    [self show:type withMessage:message in:controller withCompletion:completion andCancelation:nil];
+}
+
+- (void)show:(SKNotificationType)type withMessage:(NSString *)message in:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation{
     
     CGFloat bannerHeight = 35.0f;
     const CGFloat bannerLabelPadding = 5.0f;
@@ -130,7 +154,10 @@
     
     // Setup background
     SKNotificationView *notificationView = [[SKNotificationView alloc] initWithFrame:frame];
+    
+    // Set completion and cancelation
     [notificationView setCompletion:completion];
+    [notificationView setCancelation:cancelation];
     
     // Setup imageview
     notificationView.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(bannerImagePaddig, bannerImagePaddig, bannerImageSide, bannerImageSide)];
@@ -203,7 +230,7 @@
     [notificationView.notificationLabel setNumberOfLines:0];
     [notificationView.notificationLabel setFont:self.messageFont];
     [notificationView.notificationLabel setTextAlignment:NSTextAlignmentLeft];
-    [notificationView.notificationLabel setLineBreakMode:NSLineBreakByCharWrapping];
+    [notificationView.notificationLabel setLineBreakMode:NSLineBreakByWordWrapping];
     [notificationView.notificationLabel setText:message];
     
     // Adjust size if elastic
@@ -259,13 +286,18 @@
     iconFrame.origin.y = bannerHeight / 2.0f - bannerImageSide / 2.0f + (includeStatusBar ? statusHeight / 2.0f : 0.0f);
     [notificationView.iconView setFrame:iconFrame];
     
+    // Adjust button
+    CGRect buttonFrame = notificationView.iconView.frame;
+    buttonFrame.origin.y = bannerHeight / 2.0f - bannerImageSide / 2.0f + (includeStatusBar ? statusHeight / 2.0f : 0.0f);
+    notificationView.bigButton = [[UIButton alloc] initWithFrame:buttonFrame];
+    
+    [notificationView addSubview:notificationView.bigButton];
     [notificationView addSubview:notificationView.notificationLabel];
     [notificationView addSubview:notificationView.iconView];
     [notificationView bringSubviewToFront:notificationView.iconView];
+    [notificationView bringSubviewToFront:notificationView.bigButton];
     
-    // Dismiss on tap
-    notificationView.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissOnTap:)];
-    [notificationView setupRecognizer];
+    [notificationView setUserInteractionEnabled:YES];
     
     // Drop shadow
     if ([self dropsShadow]) {
@@ -274,10 +306,12 @@
     
     @synchronized(notificationView){
         [notificationView setOrderNumber:_counter];
+        [notificationView.bigButton setTag:_counter];
         _counter++;
     }
     
     [controller.view addSubview:notificationView];
+    [_displayedNotifications addObject:notificationView];
     
     float fracture = 0.25f;
     
@@ -301,65 +335,130 @@
     for(UIView* view in sortedArray){
         if([view isKindOfClass:[SKNotificationView class]]){
             SKNotificationView *subView = ((SKNotificationView*)view);
-            fracture += 0.1;
+            fracture += 0.1f;
             subView.duration += fracture;
         }
     }
     
     // Animate!
-    [UIView animateWithDuration:.5 delay:0.1f options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [self animateUsingAnimation:^{
+        
         // Slide down
         CGRect frame = notificationView.frame;
         frame.origin.y = _latestOffsetY;
         [notificationView setFrame:frame];
         
-    } completion:^(BOOL finished) {
-        [self slideUp:notificationView immediately:NO];
-    }];
+        [notificationView.bigButton setFrame:notificationView.bounds];
+        [notificationView.bigButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    } andCompletion:^(BOOL finished) {
+        
+        [self performSelector:@selector(slideUp:) withObject:notificationView afterDelay:self.duration];
+
+    } slidingUp:NO];
     
     _latestOffsetY = notificationView.frame.origin.y + notificationView.frame.size.height;
     
 }
 
+- (void)animateUsingAnimation:(void (^)(void))animations
+                andCompletion:(void (^)(BOOL finished))completion
+                    slidingUp:(BOOL)isSlidingUp{
+    
+    CGFloat duration = 0.75f;
+    CGFloat damping = 0.85f;
+    CGFloat velocity = 0.15f;
+    
+    switch (_animationType) {
+        case SKAnimationSmooth:
+            duration = 0.75f;
+            damping = 0.85f;
+            velocity = 0.15f;
+            break;
+        case SKAnimationQuickDrop:
+            duration = 0.4f;
+            damping = 0.35f;
+            velocity = 0.65f;
+            break;
+        case SKAnimationSlowDrop:
+            duration = 0.4f;
+            damping = 0.55f;
+            velocity = 0.45f;
+            break;
+            
+        default:
+            break;
+    }
+    
+    UIViewAnimationOptions options = UIViewAnimationOptionCurveEaseIn;
+    
+    if (isSlidingUp) {
+        duration = duration * 1.35f;
+        options = UIViewAnimationOptionCurveEaseOut;
+    }
+    
+    // Animate!
+    [UIView animateWithDuration:duration
+                          delay:0.1
+         usingSpringWithDamping:damping
+          initialSpringVelocity:velocity
+                        options:options
+                     animations:animations
+                     completion:completion];
+
+}
+
+- (void)slideUp:(SKNotificationView *)notificationView{
+    [self slideUp:notificationView immediately:NO];
+}
+
 - (void)slideUp:(SKNotificationView *)notificationView immediately:(BOOL)immediately{
     
-    float duration = 0.5f;
-    float baseDuration = 0.5f;
-    
-    if (self.duration > duration) {
-        duration = self.duration - 0.5f;
-    }
-    
-    if(notificationView.duration > duration){
-        duration = notificationView.duration;
-    }
-    
-    if (immediately) {
-        duration = .25f;
-        baseDuration = .15f;
-    }
-    
-    
-    [UIView animateWithDuration:baseDuration delay:duration options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [self animateUsingAnimation:^{
+        
         // Slide back up
         CGRect frame = CGRectMake(0, - notificationView.frame.size.height, notificationView.frame.size.width, notificationView.frame.size.height);
         [notificationView setFrame:frame];
-    } completion:^(BOOL finished) {
+    } andCompletion:^(BOOL finished) {
+        
         // Call completion block
+        [_displayedNotifications removeObject:notificationView];
         [notificationView removeFromSuperview];
-        notificationView.completion;
-    }];
-    
+        
+        if (notificationView.completion) {
+            notificationView.completion();
+        }
+        
+
+    } slidingUp:YES];
     
     _latestOffsetY = notificationView.frame.origin.y - notificationView.frame.size.height;
+    
     if (_latestOffsetY < 0) {
         _latestOffsetY = 0;
     }
 }
 
-- (void)dismissOnTap:(UIGestureRecognizer *)recognizer{
-    for (SKNotificationView *notificationView in _displayedNotifications) {
-        [self slideUp:notificationView immediately:YES];
+- (void)buttonTapped:(id)sender{
+    
+    NSInteger tag = [(UIButton *)sender tag];
+    SKNotificationView *actualView = nil;
+    
+    for (SKNotificationView *view in _displayedNotifications) {
+        if (view.orderNumber == tag) {
+            actualView = view;
+            break;
+        }
+    }
+    
+    if (actualView) {
+        if (self.cancelsOnTap || self.dismissesOnTap) {
+            [self slideUp:actualView immediately:YES];
+        }
+        
+        if (self.cancelsOnTap && actualView.cancelation) {
+            actualView.cancelation();
+        }
+        
     }
 }
 

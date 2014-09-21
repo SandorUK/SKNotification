@@ -15,6 +15,9 @@
     
     if (self) {
         _uniqueID = [NSUUID UUID];
+        _bigButton = [[UIButton alloc] initWithFrame:self.frame];
+        [self addSubview:_bigButton];
+        [_bigButton setCenter:self.center];
     }
     
     return self;
@@ -37,16 +40,4 @@
     [self.layer setShadowOpacity:0.6f];
 }
 
-- (void)setupRecognizer{
-    if (self.tapRecognizer) {
-        [self.tapRecognizer setNumberOfTapsRequired:1];
-        [self.tapRecognizer setCancelsTouchesInView:NO];
-        [self addGestureRecognizer:self.tapRecognizer];
-        [self setUserInteractionEnabled:YES];
-        [self setMultipleTouchEnabled:YES];
-        
-        [self.notificationLabel setUserInteractionEnabled:YES];
-        [self.iconView setUserInteractionEnabled:YES];
-    }
-}
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SKNotificationView.h"
 
 typedef NS_ENUM(NSInteger, SKNotificationType){
     SKNSuccess,
@@ -14,6 +15,12 @@ typedef NS_ENUM(NSInteger, SKNotificationType){
     SKNAlert,
     SKNInfo,
     SKNCustom
+};
+
+typedef NS_ENUM(NSInteger, SKAnimationType){
+    SKAnimationSmooth,
+    SKAnimationQuickDrop,
+    SKAnimationSlowDrop
 };
 
 //RGB color macro
@@ -37,9 +44,22 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 + (instancetype)centre;
 - (void)setImageWithName:(NSString*)imageName forType:(SKNotificationType)type;
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message in:(UIViewController*)controller;
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller;
+
 - (void)show:(SKNotificationType)type withMessage:(NSString*)message in:(UIViewController*)controller withCompletion:(void (^)(void))completion;
+
 - (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion;
-- (void)dismissOnTap:(UIGestureRecognizer *)recognizer;
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message in:(UIViewController*)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation;
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation;
+
+- (void)buttonTapped;
+
+- (void)slideUp:(SKNotificationView *)notificationView;
 
 @property (strong, nonatomic) UIColor *colorSuccess;
 @property (strong, nonatomic) UIColor *colorFailure;
@@ -58,6 +78,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 @property (strong, nonatomic) UIFont  *messageFont;
 
+@property (assign) SKAnimationType animationType;
 @property (assign) double alpha;
 @property (assign, getter = isTransparent, setter = setTransparent:) BOOL transparent;
 @property (assign, getter = isElastic, setter = setElastic:) BOOL elastic;
@@ -65,7 +86,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 @property (assign, getter = hasCustomFont, setter = setUseCustomFont:) BOOL customFont;
 @property (assign, setter = setUseAutomaticTextColor:) BOOL automaticColor;
 @property (assign, setter = setColorizeIcon:) BOOL colorizeIcon;
-@property (assign, getter = dropsShadow, setter = shouldDropShadow:) BOOL shadow;
+@property (assign) BOOL onlyOneBanner;
+@property (assign, setter = shouldDropShadow:, getter = dropsShadow) BOOL shadow;
 @property (assign, setter = setDisplayDuration:) float duration;
+@property (assign, getter = dismissesOnTap, setter = shouldDismissOnTap:) BOOL dismissOnTap;
+@property (assign, getter = cancelsOnTap, setter = shouldCancelOnTap:) BOOL cancelOnTap;
 
 @end

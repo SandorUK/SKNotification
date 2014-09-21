@@ -1,5 +1,5 @@
-SKNotification
-==============
+SKNotification 1.3
+==================
 
 for CocoaPods
 ______________
@@ -14,20 +14,32 @@ Customisation:
 * Custom fonts supported
 * Translucent notifications supported
 * Multiple notifications on one screen
+* Blocks for successful completion or cancelation
+* Cancelation on tap
 
-![alt text](http://files.softicons.com/download/toolbar-icons/mono-general-icons-by-custom-icon-design/png/64x64/alert.png "Alert")
+![alt text](http://files.softicons.com/download/toolbar-icons/mono-general-icons-by-custom-icon-design/png/16x16/alert.png "Alert")
 *Still under development, watchout for minor bugs. Please report to issues if found*
 
 Usage:
 
-There are two ways to display a notification: using a localization key or a direct string
+There are several ways to display a notification: using a localization key or a direct string
 
 Here are the method signatures and an example of usage
 
 ```
+- (void)setImageWithName:(NSString*)imageName forType:(SKNotificationType)type;
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message in:(UIViewController*)controller;
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller;
+
 - (void)show:(SKNotificationType)type withMessage:(NSString*)message in:(UIViewController*)controller withCompletion:(void (^)(void))completion;
+
 - (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion;
 
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message in:(UIViewController*)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation;
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation;
 
 [[SKNotification centre] show:SKNSuccess
                       withMessage:@"Alert, your location is too far from the actual address."
@@ -53,6 +65,14 @@ typedef NS_ENUM(NSInteger, SKNotificationType){
     SKNAlert,
     SKNInfo,
     SKNCustom
+};
+```
+Additional animation options:
+```
+typedef NS_ENUM(NSInteger, SKAnimationType){
+    SKAnimationSmooth,
+    SKAnimationQuickDrop,
+    SKAnimationSlowDrop
 };
 ```
 Additional options and usage:
