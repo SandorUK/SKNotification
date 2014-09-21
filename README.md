@@ -1,4 +1,4 @@
-SKNotification 1.3
+SKNotification
 ==================
 
 for CocoaPods
