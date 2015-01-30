@@ -22,10 +22,9 @@ Pod::Spec.new do |s|
     s.homepage     = "https://github.com/SandorUK/SKNotification"
 	s.license      = {:type => 'MIT', :file => 'LICENSE'}
   	s.author             = { "Sandor Kolotenko" => "sandor@isandor.com" }
-  	s.social_media_url   = "http://twitter.com/iSandor"
-  	
+  	s.homepage = 'http://isandor.com/open-source/sknotification-cocoapod'	
   	s.platform     = :ios
-	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.4" }
+	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.5" }
 	
   	s.source_files  = "SKNotification/Classes", "SKNotification/Classes/**/*.{h,m}"
   	
