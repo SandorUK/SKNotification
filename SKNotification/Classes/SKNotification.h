@@ -57,7 +57,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 - (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation;
 
-- (void)buttonTapped;
+- (void)showTart:(SKNotificationType)type withTitle:(NSString *)title andMessage:(NSString *)message in:(UIViewController *)controller;
+
+- (void)buttonTapped:(id)sender;
 
 - (void)slideUp:(SKNotificationView *)notificationView;
 

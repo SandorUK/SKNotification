@@ -14,7 +14,7 @@
 		<string>https://github.com/SandorUK/SKNotification.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>SKNotification.xcodeproj/project.xcworkspace</string>
+	<string>SKNotification.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>70482E3681E011EC1A13FA0A7C3B64FB9942F821</key>

@@ -14,12 +14,12 @@
 
 + (instancetype)centre
 {
-	static id sharedClient;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		sharedClient = [[self alloc] init];
-	});
-	return sharedClient;
+    static id sharedClient;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedClient = [[self alloc] init];
+    });
+    return sharedClient;
 }
 
 - (id)init
@@ -145,12 +145,33 @@
 
 - (void)show:(SKNotificationType)type withMessage:(NSString *)message in:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation{
     
+    [self build:type isTart:NO withTitle:nil withMessage:message
+             in:controller withCompletion:completion andCancelation:cancelation];
+}
+
+- (void)showTart:(SKNotificationType)type withTitle:(NSString *)title andMessage:(NSString *)message in:(UIViewController *)controller{
+    
+    [self build:type isTart:YES withTitle:title withMessage:message
+             in:controller withCompletion:nil andCancelation:nil];
+    
+}
+
+- (void)build:(SKNotificationType)type isTart:(BOOL)isTart withTitle:(NSString *)title withMessage:(NSString *)message
+           in:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation{
+    
     CGFloat bannerHeight = 35.0f;
+    CGFloat bannerWidth = controller.view.frame.size.width;
+    
+    if (isTart) {
+        bannerHeight = 335.0f;
+        bannerWidth = bannerWidth * 0.85f;
+    }
+    
     const CGFloat bannerLabelPadding = 5.0f;
     const CGFloat bannerImagePaddig = 3.0f;
     const CGFloat bannerImageSide = 38.0f;
     
-    CGRect frame = CGRectMake(0, -bannerHeight, controller.view.frame.size.width, bannerHeight);
+    CGRect frame = CGRectMake(0, -bannerHeight, bannerWidth, bannerHeight);
     
     // Setup background
     SKNotificationView *notificationView = [[SKNotificationView alloc] initWithFrame:frame];
@@ -160,7 +181,8 @@
     [notificationView setCancelation:cancelation];
     
     // Setup imageview
-    notificationView.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(bannerImagePaddig, bannerImagePaddig, bannerImageSide, bannerImageSide)];
+    notificationView.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(bannerImagePaddig, bannerImagePaddig,
+                                                                              bannerImageSide, bannerImageSide)];
     [notificationView.iconView setContentMode:UIViewContentModeCenter];
     
     switch (type) {
@@ -203,6 +225,7 @@
                                                bannerLabelPadding,
                                                frame.size.width - bannerLabelPadding - labelOffsetX,
                                                frame.size.height - bannerLabelPadding);
+    
     notificationView.notificationLabel = [[UILabel alloc] initWithFrame:notificationLabelFrame];
     
     if (self.hasCustomFont) {
@@ -255,7 +278,7 @@
             bannerHeight = bannerLabelPadding * 2.0f + notificationLabelFrame.size.height;
             [notificationView.notificationLabel setNumberOfLines:0];
             
-            CGRect frame = CGRectMake(0, - bannerHeight, controller.view.frame.size.width, bannerHeight);
+            CGRect frame = CGRectMake(0, - bannerHeight, bannerWidth, bannerHeight);
             [notificationView setFrame:frame];
             
         }
@@ -263,10 +286,10 @@
     
     float statusHeight = 0.0f;
     BOOL includeStatusBar = ![UIApplication sharedApplication].statusBarHidden &&
-                    ![controller isKindOfClass:[UINavigationController class]] &&
-                    (_latestOffsetY == 0) && self.includeStatusBar;
+    ![controller isKindOfClass:[UINavigationController class]] &&
+    (_latestOffsetY == 0) && self.includeStatusBar;
     
-    if (includeStatusBar) {
+    if (includeStatusBar && !isTart) {
         // Get the statusbar height
         statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
         bannerHeight += statusHeight;
@@ -278,7 +301,7 @@
     [notificationView.notificationLabel setFrame:notificationLabelFrame];
     
     // Adjust the banner
-    frame = CGRectMake(0, - bannerHeight, controller.view.frame.size.width, bannerHeight);
+    frame = CGRectMake(0, - bannerHeight, bannerWidth, bannerHeight);
     [notificationView setFrame:frame];
     
     // Adjust position of an icon
@@ -313,30 +336,36 @@
     [controller.view addSubview:notificationView];
     [_displayedNotifications addObject:notificationView];
     
+    if (isTart) {
+        [notificationView setCenter:CGPointMake((controller.view.frame.size.width / 2.0f), notificationView.frame.origin.y)];
+    }
+    
     float fracture = 0.25f;
     
-    NSArray *unsortedArray = controller.view.subviews;
-    NSArray *sortedArray = [unsortedArray sortedArrayUsingComparator:^(id obj1, id obj2) {
-        if([obj1 isKindOfClass:[SKNotificationView class]] &&
-           [obj2 isKindOfClass:[SKNotificationView class]])
-        {
-            if([(SKNotificationView*)obj1 orderNumber] < [(SKNotificationView*)obj2 orderNumber]){
-                return NSOrderedDescending;
+    if(!isTart){
+        NSArray *unsortedArray = controller.view.subviews;
+        NSArray *sortedArray = [unsortedArray sortedArrayUsingComparator:^(id obj1, id obj2) {
+            if([obj1 isKindOfClass:[SKNotificationView class]] &&
+               [obj2 isKindOfClass:[SKNotificationView class]])
+            {
+                if([(SKNotificationView*)obj1 orderNumber] < [(SKNotificationView*)obj2 orderNumber]){
+                    return NSOrderedDescending;
+                }
+                else{
+                    return NSOrderedAscending;
+                }
             }
             else{
-                return NSOrderedAscending;
+                return NSOrderedSame;
             }
-        }
-        else{
-            return NSOrderedSame;
-        }
-    }];
-    
-    for(UIView* view in sortedArray){
-        if([view isKindOfClass:[SKNotificationView class]]){
-            SKNotificationView *subView = ((SKNotificationView*)view);
-            fracture += 0.1f;
-            subView.duration += fracture;
+        }];
+        
+        for(UIView* view in sortedArray){
+            if([view isKindOfClass:[SKNotificationView class]]){
+                SKNotificationView *subView = ((SKNotificationView*)view);
+                fracture += 0.1f;
+                subView.duration += fracture;
+            }
         }
     }
     
@@ -345,7 +374,7 @@
         
         // Slide down
         CGRect frame = notificationView.frame;
-        frame.origin.y = _latestOffsetY;
+        frame.origin.y = isTart ? (controller.view.center.y - bannerHeight / 2.0f) : _latestOffsetY;
         [notificationView setFrame:frame];
         
         [notificationView.bigButton setFrame:notificationView.bounds];
@@ -353,11 +382,12 @@
     } andCompletion:^(BOOL finished) {
         
         [self performSelector:@selector(slideUp:) withObject:notificationView afterDelay:self.duration];
-
+        
     } slidingUp:NO];
     
-    _latestOffsetY = notificationView.frame.origin.y + notificationView.frame.size.height;
-    
+    if (!isTart && !self.onlyOneBanner) {
+        _latestOffsetY = notificationView.frame.origin.y + notificationView.frame.size.height;
+    }
 }
 
 - (void)animateUsingAnimation:(void (^)(void))animations
@@ -404,7 +434,7 @@
                         options:options
                      animations:animations
                      completion:completion];
-
+    
 }
 
 - (void)slideUp:(SKNotificationView *)notificationView{
@@ -416,7 +446,7 @@
     [self animateUsingAnimation:^{
         
         // Slide back up
-        CGRect frame = CGRectMake(0, - notificationView.frame.size.height, notificationView.frame.size.width, notificationView.frame.size.height);
+        CGRect frame = CGRectMake(notificationView.frame.origin.x, - notificationView.frame.size.height, notificationView.frame.size.width, notificationView.frame.size.height);
         [notificationView setFrame:frame];
     } andCompletion:^(BOOL finished) {
         
@@ -428,7 +458,7 @@
             notificationView.completion();
         }
         
-
+        
     } slidingUp:YES];
     
     _latestOffsetY = notificationView.frame.origin.y - notificationView.frame.size.height;

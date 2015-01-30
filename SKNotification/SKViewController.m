@@ -22,9 +22,6 @@
     [self.view setBackgroundColor:[UIColor lightGrayColor]];
     
     [self.view setUserInteractionEnabled:YES];
-}
-
-- (IBAction)showNotification:(id)sender{
     
     [[SKNotification centre] setAnimationType:SKAnimationSmooth];
     
@@ -37,6 +34,10 @@
     [[SKNotification centre] shouldCancelOnTap:YES];
     
     [[SKNotification centre] setMessageFont:[UIFont fontWithName:@"Helvetica-Bold" size:10.0f]];
+}
+
+- (IBAction)showNotification:(id)sender{
+    
     
     [[SKNotification centre] show:SKNFailure
                       withMessage:@"The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'"
@@ -70,6 +71,15 @@
                                                   in:self];
          
      }];
+    
+    
+}
+
+- (IBAction)showTart:(id)sender{
+    
+    NSString *message = @"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. ";
+    
+    [[SKNotification centre] showTart:SKNAlert withTitle:@"This is a tart" andMessage:message in:self];
 }
 
 - (void)didReceiveMemoryWarning
