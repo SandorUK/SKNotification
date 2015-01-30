@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SKNotification"
-  s.version      = "1.4"
+  s.version      = "1.5"
   s.summary      = "Nice and easy unobtrusive notifications."
 
   s.description  = <<-DESC
