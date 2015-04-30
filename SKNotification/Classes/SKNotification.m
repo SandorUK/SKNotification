@@ -117,6 +117,36 @@
     }
 }
 
+#pragma mark Swift Compatibility
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message inController:(UIViewController*)controller{
+    [self show:type withMessage:message in:controller];
+}
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key inController:(UIViewController *)controller{
+    [self show:type withLocalizedKey:key in:controller];
+}
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message inController:(UIViewController*)controller withCompletion:(void (^)(void))completion{
+    [self show:type withMessage:message in:controller withCompletion:completion];
+}
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key inController:(UIViewController *)controller withCompletion:(void (^)(void))completion{
+    [self show:type withLocalizedKey:key in:controller withCompletion:completion];
+}
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message inController:(UIViewController*)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation{
+    [self show:type withMessage:message in:controller withCompletion:completion andCancelation:cancelation];
+}
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key inController:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation{
+    [self show:type withLocalizedKey:key inController:controller withCompletion:completion andCancelation:cancelation];
+}
+
+- (void)showTart:(SKNotificationType)type withTitle:(NSString *)title andMessage:(NSString *)message inController:(UIViewController *)controller{
+    [self showTart:type withTitle:title andMessage:message in:controller];
+}
+
+#pragma mark Objective C Methods
 - (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key in:(UIViewController *)controller{
     
     NSString *message = NSLocalizedString(key, key);
@@ -452,7 +482,12 @@
         
         // Call completion block
         [_displayedNotifications removeObject:notificationView];
-        [notificationView removeFromSuperview];
+        
+        [UIView animateWithDuration:0.15f animations:^{
+            [notificationView setAlpha:0.0];
+        } completion:^(BOOL finished) {
+            [notificationView removeFromSuperview];
+        }];
         
         if (notificationView.completion) {
             notificationView.completion();

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SKNotification"
-  s.version      = "1.5"
+  s.version      = "1.6"
   s.summary      = "Nice and easy unobtrusive notifications."
 
   s.description  = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   	s.author             = { "Sandor Kolotenko" => "sandor@isandor.com" }
   	s.homepage = 'http://isandor.com/open-source/sknotification-cocoapod'	
   	s.platform     = :ios
-	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.5" }
+	s.source       = { :git => "https://github.com/SandorUK/SKNotification.git", :tag => "1.6" }
 	
   	s.source_files  = "SKNotification/Classes", "SKNotification/Classes/**/*.{h,m}"
   	

@@ -59,6 +59,22 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 - (void)showTart:(SKNotificationType)type withTitle:(NSString *)title andMessage:(NSString *)message in:(UIViewController *)controller;
 
+#pragma mark Swift Compatibility Methods
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message inController:(UIViewController*)controller;
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key inController:(UIViewController *)controller;
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message inController:(UIViewController*)controller withCompletion:(void (^)(void))completion;
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key inController:(UIViewController *)controller withCompletion:(void (^)(void))completion;
+
+- (void)show:(SKNotificationType)type withMessage:(NSString*)message inController:(UIViewController*)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation;
+
+- (void)show:(SKNotificationType)type withLocalizedKey:(NSString *)key inController:(UIViewController *)controller withCompletion:(void (^)(void))completion andCancelation:(void (^)(void))cancelation;
+
+- (void)showTart:(SKNotificationType)type withTitle:(NSString *)title andMessage:(NSString *)message inController:(UIViewController *)controller;
+
 - (void)buttonTapped:(id)sender;
 
 - (void)slideUp:(SKNotificationView *)notificationView;
